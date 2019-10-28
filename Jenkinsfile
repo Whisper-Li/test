@@ -2,10 +2,15 @@ Jenkinsfile (Declarative Pipeline)
 pipeline {
     agent any
     stages {
-        stage('build') {
+        stage('Test') {
             steps {
-                echo 'good'
+                sh './gradlew check'
             }
+        }
+    }
+    post {
+        always {
+            junit 'build/reports/1/1.xml'
         }
     }
 }
